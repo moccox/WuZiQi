@@ -11,11 +11,6 @@ int main(void)
 	char qizi[2] = { 'o', '@' }; //白子（o）、黑子（@）
 	int i = 0;//回合数 用于判定是白方落子还是黑方落子
 	QiPanInit(&qipan[0][0]);
-	cout << "   双人五子棋" << endl;
-	cout << "游戏规则：" << endl
-		<< "1.分回合制，白方先落子，" << endl
-		<< "2.落子方式为输入落子的行、列，行号、列号均从1开始数起，" << endl
-		<<"3.先达到五子连珠的一方胜出。" << endl;
 	QiPanPrt(qipan);
 	
 	while (i >= 0){ //下棋死循环，直到有输赢结束
@@ -24,7 +19,7 @@ int main(void)
 			cout << "白方落子" << endl;
 			cout << "输入落子的行、列" << endl;
 			cin >> hang >> lie;
-			if (hang > 9 || hang < 1 || lie>9 || lie < 1 || qipan[hang][lie] != '+'){
+			if (hang > 9 || hang < 1 || lie>9 || lie < 1 || qipan[hang-1][lie-1] != '+'){
 				cout << "输入的行、列有误，或者该点已有棋子，请重新输入！" << endl; //没有i++,回合数不变 循环结束后仍是当前回合
 			}else{
 				qipan[hang-1][lie-1] = qizi[0]; //替换为白子
@@ -48,7 +43,7 @@ int main(void)
 			cout << "黑方落子" << endl;
 			cout << "输入落子的行、列" << endl;
 			cin >> hang >> lie;
-			if (hang > 9 || hang < 1 || lie>9 || lie < 1 || qipan[hang][lie] != '+'){
+			if (hang > 9 || hang < 1 || lie>9 || lie < 1 || qipan[hang-1][lie-1] != '+'){
 				cout << "输入的行、列有误，或者该点已有棋子，请重新输入！" << endl; //没有i++,回合数不变 循环结束后仍是当前回合
 			}
 			else{
@@ -91,6 +86,12 @@ void QiPanInit(char *a) //初始化棋盘
 
 void QiPanPrt(char A[][9]) //输出棋盘
 {
+	system("cls");
+	cout << "   双人五子棋" << endl;
+	cout << "游戏规则：" << endl
+		<< "1.分回合制，白方先落子，" << endl
+		<< "2.落子方式为输入落子的行、列，行号、列号均从1开始数起，" << endl
+		<< "3.先达到五子连珠的一方胜出。" << endl;
 	int i,j;
 	for (i = 0; i < 9; i++){
 
